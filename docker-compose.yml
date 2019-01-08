@@ -1,0 +1,26 @@
+version: '2'
+
+services: 
+  docker-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=factures
+      - MYSQL_PASSWORD=
+  spring-docker-service:
+    image: spring-facture-service
+    build:
+      context: ./conteneur
+      dockerfile: ./Dockerfile
+    depends_on:
+      - docker-mysql
+    ports:
+      - 7070:8080
+    environment:
+      - CATALINA_OPTS=-Dspring.profiles.active=container
+      - DATABASE_HOST=docker-mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=
+      - DATABASE_NAME=factures
+      - DATABASE_PORT=3306
+  
