@@ -1,0 +1,4 @@
+org\sid\web\FactureRestService.class
+org\sid\FactureApplication.class
+org\sid\entities\Facture.class
+org\sid\dao\FactureRepository.class
