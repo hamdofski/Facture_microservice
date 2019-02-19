@@ -1,33 +1,27 @@
 version: '3'
-
 services: 
-  docker-mysql:
+  mysqlm:
     image: mysql:latest
     ports:
-      - "3306:3306"
+      - 3308:3306
     networks:
       - net-spring-db
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root123
       - MYSQL_DATABASE=factures
-      - MYSQL_PASSWORD=root123
-  spring-docker-service:
-    image: spring-facture-service
+  micro-facture-m:
+    image: facture-service
     build:
       context: .
       dockerfile: ./conteneur/Dockerfile
     depends_on:
-      - docker-mysql
+      - mysqlm
+    links:
+      - mysqlm
     ports:
-      - 7070:8080
+      - 7071:8088
     networks:
       - net-spring-db
-    environment:
-      - DATABASE_HOST=docker-mysql
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=root123
-      - DATABASE_NAME=factures
-      - DATABASE_PORT=3306
 networks:
   net-spring-db:
     driver: bridge

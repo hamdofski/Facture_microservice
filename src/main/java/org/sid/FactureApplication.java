@@ -11,8 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FactureApplication implements CommandLineRunner {
-	@Autowired
-	private FactureRepository factureRepository;
+	
 	
 
 	public static void main(String[] args) {
@@ -21,9 +20,8 @@ public class FactureApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		DateFormat df= new SimpleDateFormat("dd/MM/yyyy");
-		factureRepository.findAll().forEach(f->{
-			System.out.println(f.getIdFacture());
-		});
+		
+			System.out.println("okok ok ok");
+	
 	}
 }
